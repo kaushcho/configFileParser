@@ -1,16 +1,41 @@
+/*MIT License
+
+Copyright (c) [2018] [Kaushik Choudhary]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/ 
+
 #include <iostream>
 #include <memory>
 #include "ConfigurationFileHolder.h"
-#include "BludConfigurationHolder.h"
-typedef std::shared_ptr<BludConfigurationHolder> ConfigurationFileHolderPtr_t;
+#include "ConcreteConfigurationHolder.h"
+typedef std::shared_ptr<ConcreteConfigurationHolder> ConfigurationFileHolderPtr_t;
 
+// Test code
 int main()
 {
-    ConfigurationFileHolderPtr_t myConfigFileHolder = std::make_shared<BludConfigurationHolder>();
+    ConfigurationFileHolderPtr_t myConfigFileHolder = std::make_shared<ConcreteConfigurationHolder>();
 
     myConfigFileHolder->LoadConfigurationParameters();
-    std::cout << "From Main: " << myConfigFileHolder->GetLogFilePath() << std::endl;
-    
+    std::cout << "Log File Path: " << myConfigFileHolder->GetLogFilePath() << std::endl;
+    std::cout << "Default Project Name: " << myConfigFileHolder->GetDefaultProjectName() << std::endl;
+    std::cout << "Log Results in milliseconds: " << myConfigFileHolder->GetLogResultsMs() << std::endl;
 
     return 0;
 
