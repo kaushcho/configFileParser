@@ -1,0 +1,19 @@
+#------------ DATA LOGGING ------------
+
+#Log file path, don't add the comment in the end.
+logfilepath             ./log/
+#The maximum size of the data log, it will rollover after this threshold
+logsize_max             1000000000
+log_default_project     MineSense
+#The interval CDF data should be logged, in milliseconds, 0 - Log everything
+log_results_ms          0
+#:Should log virtual channels: 0 - No, 1 - Yes
+log_virtualChannels     1
+#Should log interpreted values: 0 - No, 1 - Yes
+log_interpretation      1
+#Should log aggregated values: 0 -No, 1 - Yes
+log_aggregation         1
+#Should log windowed values: 0 -No, 1 - Yes
+log_window              1
+#Should log decision values: 0 -No, 1 - Yes
+log_decision            1
