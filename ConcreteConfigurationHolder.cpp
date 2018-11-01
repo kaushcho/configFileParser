@@ -92,17 +92,24 @@ std::string ConcreteConfigurationHolder::GetDefaultProjectName()
     return m_logDefaultProjectName;
 }
 
-uint64_t ConcreteConfigurationHolder::GetLogSizeMax() 
+uint32_t ConcreteConfigurationHolder::GetLogSizeMax() 
 {
+    auto searchConfigItem = m_configurationDictionary.find("logsize_max");
+
+    if (searchConfigItem != m_configurationDictionary.end())
+        m_logsizeMax = std::stoi(searchConfigItem->second);
+    else
+        std::cerr << "Configuration does not exist in file" << std::endl; // should be logged
+
     return m_logsizeMax;
 }
 
-uint8_t ConcreteConfigurationHolder::GetLogResultsMs() 
+uint32_t ConcreteConfigurationHolder::GetLogResultsMs() 
 {
-    auto searchConfigItem = m_configurationDictionary.find("log_default_project");
+    auto searchConfigItem = m_configurationDictionary.find("log_results_ms");
 
-   if (searchConfigItem != m_configurationDictionary.end())
-       std::istringstream(searchConfigItem->second) >> m_logResultsMs;
+    if (searchConfigItem != m_configurationDictionary.end())
+        m_logResultsMs = std::stoi(searchConfigItem->second);
     else
         std::cerr << "Configuration does not exist in file" << std::endl; // should be logged
 
@@ -111,19 +118,47 @@ uint8_t ConcreteConfigurationHolder::GetLogResultsMs()
 
 bool ConcreteConfigurationHolder::IsVirtualChannelLoggingEnabled() 
 {
+    auto searchConfigItem = m_configurationDictionary.find("log_virtualChannels");
+
+    if (searchConfigItem != m_configurationDictionary.end())
+        std::istringstream(searchConfigItem->second) >> m_enableVirtualChannelLogging;
+    else
+        std::cerr << "Configuration does not exist in file" << std::endl; // should be logged
+
     return m_enableVirtualChannelLogging;
 }
 bool ConcreteConfigurationHolder::IsLogInterpretationEnabled() 
 {
+    auto searchConfigItem = m_configurationDictionary.find("log_interpretation");
+
+    if (searchConfigItem != m_configurationDictionary.end())
+        std::istringstream(searchConfigItem->second) >> m_enableLogInterpretation;
+    else
+        std::cerr << "Configuration does not exist in file" << std::endl; // should be logged
+
     return m_enableLogInterpretation;
 }
 
 bool ConcreteConfigurationHolder::IsLogWindowEnabled() 
 {
+    auto searchConfigItem = m_configurationDictionary.find("log_window");
+
+    if (searchConfigItem != m_configurationDictionary.end())
+        std::istringstream(searchConfigItem->second) >> m_enableLogWindow;
+    else
+        std::cerr << "Configuration does not exist in file" << std::endl; // should be logged
+
     return m_enableLogWindow;
 }
 
 bool ConcreteConfigurationHolder::IsLogDecisionEnabled() 
 {
+    auto searchConfigItem = m_configurationDictionary.find("log_decision");
+
+    if (searchConfigItem != m_configurationDictionary.end())
+        std::istringstream(searchConfigItem->second) >> m_enableLogDecision;
+    else
+        std::cerr << "Configuration does not exist in file" << std::endl; // should be logged
+
     return m_enableLogDecision;
 }

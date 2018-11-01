@@ -80,8 +80,8 @@ public:
     // variables carrying the configuration parameters.
     std::string GetLogFilePath();
     std::string GetDefaultProjectName();
-    uint64_t GetLogSizeMax();
-    uint8_t GetLogResultsMs();
+    uint32_t GetLogSizeMax();
+    uint32_t GetLogResultsMs();
     bool IsVirtualChannelLoggingEnabled();
     bool IsLogInterpretationEnabled();
     bool IsLogWindowEnabled();

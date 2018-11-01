@@ -23,19 +23,30 @@ SOFTWARE.
 
 #include <iostream>
 #include <memory>
+
 #include "ConfigurationFileHolder.h"
 #include "ConcreteConfigurationHolder.h"
+
 typedef std::shared_ptr<ConcreteConfigurationHolder> ConfigurationFileHolderPtr_t;
 
-// Test code
 int main()
 {
     ConfigurationFileHolderPtr_t myConfigFileHolder = std::make_shared<ConcreteConfigurationHolder>();
 
     myConfigFileHolder->LoadConfigurationParameters();
+
+    // The configuration object holds the configuration items. The items have been loaded into the configuration
+    // object and inserted into an std::map (often implemented using a binary tree). This could also be stored in
+    // an std::unordered_map which would be more like a hash table. The data structure lookup for the specific 
+    // configuration item only happens when the Getter for the configuration item is called. 
     std::cout << "Log File Path: " << myConfigFileHolder->GetLogFilePath() << std::endl;
-    std::cout << "Default Project Name: " << myConfigFileHolder->GetDefaultProjectName() << std::endl;
-    std::cout << "Log Results in milliseconds: " << myConfigFileHolder->GetLogResultsMs() << std::endl;
+    std::cout << "Project name: " << myConfigFileHolder->GetDefaultProjectName() << std::endl;
+    std::cout << "Maximum log size: " << myConfigFileHolder->GetLogSizeMax() << std::endl;
+    std::cout << "CDF Data interval in ms: " << myConfigFileHolder->GetLogResultsMs() << std::endl;
+    std::cout << "Is Virtual Channel Logging Enabled: " << myConfigFileHolder->IsVirtualChannelLoggingEnabled() << std::endl;
+    std::cout << "Is Log Interpretation Enabled: " << myConfigFileHolder->IsLogInterpretationEnabled() << std::endl;
+    std::cout << "Is Log Window Enabled: " << myConfigFileHolder->IsLogWindowEnabled() << std::endl;
+    std::cout << "Is Log Decision Enabled: " << myConfigFileHolder->IsLogDecisionEnabled() << std::endl;
 
     return 0;
 

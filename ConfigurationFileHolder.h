@@ -23,6 +23,8 @@ SOFTWARE.
 
 #pragma once
 
+// Abstract class for enforcing the interface. At this point, it really serves no 
+// purpose with just one type of concrete implementation. 
 class ConfigurationFileHolder
 {
 public:
